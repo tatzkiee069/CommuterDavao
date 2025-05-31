@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#ffffff">
+    <title>Jeepney Route Finder</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+    <div class="main-container">
+        <div id="sidebar">
+            <div id="sidebar-search">
+                <select id="route-select" onchange="displaySelectedRoute()">
+                    <option value="">Select a route...</option>
+                </select>
+                <p id="route-distance" class="text-gray-600 text-sm mt-2 hidden"></p>
+            </div>
+            <div id="filter-tabs">
+                <div class="filter-tab active" data-tab="routes">Routes</div>
+                <div class="filter-tab" data-tab="history">History</div>
+                <div class="filter-tab" data-tab="saved">Saved</div>
+            </div>
+            <div id="results"></div>
+            <div id="saved-routes-view">
+                <button id="back-button" onclick="showResults('routes')">
+                    <svg width="24" height="24" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2"/>
+                    </svg>
+                </button>
+                <div id="saved-routes"></div>
+            </div>
+         
+        </div>
+        <button id="toggle-sidebar" onclick="toggleSidebar()">
+            <svg width="24" height="24" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="#333" stroke-width="2"/>
+            </svg>
+        </button>
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Where to? (e.g., Abreeza Mall)">
+                <button class="search-button" onclick="searchRoutes()">Search</button>
+            </div>
+        </div>
+        <div id="map"></div>
+        <div id="route-info">
+            <div id="route-info-title"></div>
+            <div id="route-info-details"></div>
+        </div>
+        <button id="location-button" onclick="toggleLocation()">
+            <svg width="24" height="24" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 8C9.79 8 8 9.79 8 12C8 14.21 9.79 16 12 16C14.21 16 16 14.21 16 12C16 9.79 14.21 8 12 8ZM20.94 11C20.48 6.83 17.17 3.52 13 3.06V2H11V3.06C6.83 3.52 3.52 6.83 3.06 11H2V13H3.06C3.52 17.17 6.83 20.48 11 20.94V22H13V20.94C17.17 20.48 20.48 17.17 20.94 13H22V11H20.94ZM12 19C8.13 19 5 15.87 5 12C5 8.13 8.13 5 12 5C15.87 5 19 8.13 19 12C19 15.87 15.87 19 12 19Z" fill="#333"/>
+            </svg>
+        </button>
+    </div>
+     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html>

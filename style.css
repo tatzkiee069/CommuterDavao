@@ -1,0 +1,285 @@
+  body {
+       
+         /* Hide Leaflet Routing Machine control container */
+         .leaflet-routing-container {
+          display: none;
+        }
+
+         /* Optional: Hide specific Leaflet Routing Machine elements if needed */
+         .leaflet-routing-geocoders,
+         .leaflet-routing-alt,
+         .leaflet-routing-instruction {
+           display: none;
+        }
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+    
+        
+        .main-container {
+            display: flex;
+            height: 100vh;
+            position: relative;
+            width: 100%;
+        }
+        #map {
+            flex: 1;
+            width: 100%;
+            z-index: 1;
+        }
+        .search-container {
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 500px;
+            z-index: 1000;
+        }
+        .search-bar {
+            display: flex;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+        #search-input {
+            flex: 1;
+            padding: 14px 16px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+            color: #333;
+        }
+        #search-input::placeholder {
+            color: #999;
+        }
+        .search-button {
+            padding: 14px 20px;
+            background: #0745f1;
+            color: white;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .search-button:hover {
+            background: #0357f5;
+        }
+        #sidebar {
+            width: 320px;
+            height: 100%;
+            background: white;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.08);
+            z-index: 1000;
+            transform: translateX(0);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        #sidebar.hidden {
+            display: none;
+        }
+        #toggle-sidebar {
+            position: absolute;
+            left: 320px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border-radius: 0 12px 12px 0;
+            padding: 10px;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            z-index: 1001;
+            transition: left 0.5s ease;
+            width: 20px;
+        }
+        #toggle-sidebar svg {
+         margin-left: -10px; /* Move it left */
+        }
+        #toggle-sidebar.hidden {
+            left: 0;
+            border-radius: 12px 0 0 12px;
+        }
+        #sidebar-search {
+            padding: 16px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        #route-select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+        #route-select:focus {
+            border-color: #2111f5;
+        }
+        #filter-tabs {
+            display: flex;
+            padding: 8px 16px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .filter-tab {
+            flex: 1;
+            text-align: center;
+            padding: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #666666;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 8px;
+            margin: 0 4px;
+        }
+        .filter-tab:hover {
+            background: #f0f0f0;
+        }
+        .filter-tab.active {
+            color: white;
+            background: #0357f5;
+        }
+        #results, #saved-routes-view {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+        }
+        #saved-routes-view {
+            display: none;
+        }
+        #saved-routes-view.active {
+            display: block;
+        }
+        #results.hidden {
+            display: none;
+        }
+        .result-card, .saved-route-card {
+            background: white;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .result-card.active {
+            border: 2px solid #5c95ff;
+        }
+        .route-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .route-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        .toggle-arrow {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .toggle-arrow.expanded {
+            transform: rotate(180deg);
+        }
+        .route-details {
+            display: none;
+            margin-top: 8px;
+        }
+        .route-details.expanded {
+            display: block;
+        }
+        .jeepney-img {
+            width: 80px;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 8px;
+        }
+        .action-button {
+            padding: 8px 16px;
+            margin: 4px;
+            border: none;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            background: #f0f0f0;
+            color: #333;
+            transition: all 0.2s ease;
+        }
+        .action-button:hover {
+            background: #e5e5e5;
+        }
+        .delete-button {
+            background: #ffe6e6;
+            color: #ff5c5c;
+        }
+        .delete-button:hover {
+            background: #ffd4d4;
+        }
+        #saved-routes-section {
+            border-top: 1px solid #e5e5e5;
+            padding: 16px;
+            background: #f7f7f7;
+        }
+        #back-button {
+            display: none;
+            padding: 8px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        #back-button.active {
+            display: block;
+        }
+        #location-button {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            background: white;
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            z-index: 1000;
+        }
+        #location-button.active {
+            background: #dbdbf8;
+        }
+        #location-button.active svg path {
+            fill: white;
+        }
+        #route-info {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 10px;
+            background: white;
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: none;
+            
+        }
+      
+        #route-info-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333333;
+            margin-bottom: 8px;
+        }
+        #route-info-details {
+            font-size: 14px;
+            color: #666666;
+        }
